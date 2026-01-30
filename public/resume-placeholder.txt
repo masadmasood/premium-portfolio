@@ -1,0 +1,5 @@
+# Asad Masood - Resume Placeholder
+
+Please replace this file with your actual resume PDF at `public/resume.pdf`
+
+The Resume page is configured to display and allow downloading of your PDF resume.
