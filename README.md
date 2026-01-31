@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Premium Portfolio — Senior Developer
 
-## Getting Started
+A production-ready, performance-focused Next.js portfolio template built for a senior developer — clean architecture, accessibility, SEO, and best-practice developer experience.
 
-First, run the development server:
+## Overview
+This project showcases professional work, case studies, technical writing and contact channels. It’s optimized for fast load, mobile-first UX, A11y, and easy content updates.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Key Features
+- Next.js App Router (server and client components)
+- TypeScript + strict typing
+- Tailwind CSS (utility-first styling) or optional CSS-in-JS
+- Image optimization, lazy loading, and responsive images
+- SEO & Open Graph metadata per page
+- Accessible components and keyboard navigation
+- Analytics-ready (Vercel/GA/Privacy-friendly options)
+- CMS-friendly content (MDX / headless CMS ready)
+- Unit + integration test setup (Jest / Testing Library)
+- CI/CD friendly (Vercel/GitHub Actions)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
+- Next.js (app router)
+- React + TypeScript
+- Tailwind CSS (or your preferred utility library)
+- SWR / React Query (data fetching patterns)
+- Jest + React Testing Library
+- ESLint, Prettier, Husky + lint-staged
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quick Start (local)
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Development server:
+   ```bash
+   npm run dev
+   ```
+   Open http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+(If on Windows PowerShell with execution policy issues, run from CMD or use `npm.cmd run dev`.)
 
-## Learn More
+## Scripts
+- npm run dev — start dev server
+- npm run build — production build
+- npm run start — run production build locally
+- npm run lint — lint code
+- npm run test — run tests
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure (high level)
+- app/ — Next.js app routes and layouts
+- components/ — reusable UI components (accessible, tested)
+- lib/ — utilities, API clients, types
+- styles/ — global styles & Tailwind config
+- public/ — static assets, images
+- tests/ — unit & integration tests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
+Recommended: Vercel for zero-config Next.js deployment. For CI:
+- Build: npm run build
+- Output: .next
+- Setup environment variables for analytics / contact forms / CMS
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Content & Case Studies
+- Use MDX or a headless CMS to keep case studies content-driven.
+- Each case study should include: challenge, approach, outcome, tech stack, metrics, and links (live / repo).
 
-## Deploy on Vercel
+## Accessibility & Performance
+- Audit with Lighthouse and axe-core.
+- Implement semantic HTML, ARIA where needed, and keyboard focus states.
+- Use image optimization and static generation (SSG) for heavy content pages.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Testing & Quality
+- Write unit tests for components and integration tests for flows (contact form, navigation).
+- Enforce code quality with pre-commit hooks (Husky) and CI checks.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Customization Checklist (for production)
+- Replace placeholder content with real case studies and metrics.
+- Configure analytics and privacy settings.
+- Setup contact integration (email provider / form endpoint).
+- Add favicon, logos, and brand colors.
+- Run Lighthouse and fix major performance/accessibility issues.
+
+## Contributing
+Follow code style, add tests for features, run lint and tests before commit.
+
+## License & Contact
+- License: MIT (update as needed)
+- Contact: add professional email / LinkedIn / GitHub links in project header
+
+---
+
+This README is a concise blueprint for turning this Next.js starter into a polished senior developer portfolio. Update details and scripts to match your concrete stack choices.
