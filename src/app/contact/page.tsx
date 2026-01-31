@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Mail, MapPin, ArrowRight, Github, Linkedin, Twitter } from "lucide-react";
+import { Mail, MapPin, ArrowRight, Github, Linkedin, Twitter, ChevronDown, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -14,6 +15,26 @@ if (typeof window !== "undefined") {
 export default function ContactPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
+  const [selectedService, setSelectedService] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const services = [
+    { value: "dev", label: "Web Development" },
+    { value: "design", label: "UI/UX Design" },
+    { value: "audit", label: "Performance Audit" },
+    { value: "consulting", label: "Consultation" },
+  ];
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -118,23 +139,66 @@ export default function ContactPage() {
                    </div>
 
                    {/* Service Select */}
-                   <div className="group relative">
+                   <div className="group relative" ref={dropdownRef}>
                       <label className="block text-xs font-mono uppercase tracking-[0.2em] text-muted-foreground/40 mb-4 transition-colors group-focus-within:text-primary">
                         03. What do you need?
                       </label>
                       <div className="relative">
-                        <select className="w-full bg-transparent border-none p-0 py-4 text-2xl md:text-5xl font-light text-foreground placeholder:text-muted-foreground/10 focus:ring-0 focus:outline-none appearance-none cursor-pointer">
-                            <option className="bg-background text-lg" value="">Select a service...</option>
-                            <option className="bg-background text-lg" value="dev">Web Development</option>
-                            <option className="bg-background text-lg" value="design">UI/UX Design</option>
-                            <option className="bg-background text-lg" value="audit">Performance Audit</option>
-                            <option className="bg-background text-lg" value="consulting">Consultation</option>
-                        </select>
-                         <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground/40 transition-transform duration-500 group-focus-within:rotate-180">
-                             <ArrowRight className="w-6 h-6 rotate-90" />
-                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                          className={cn(
+                            "w-full bg-transparent border-none p-0 py-4 text-left text-2xl md:text-5xl font-light focus:outline-none transition-all flex items-center justify-between",
+                            selectedService ? "text-foreground" : "text-muted-foreground/30"
+                          )}
+                        >
+                          <span>
+                            {selectedService 
+                              ? services.find(s => s.value === selectedService)?.label 
+                              : "Select a service..."}
+                          </span>
+                          <ChevronDown 
+                            className={cn(
+                              "w-8 h-8 text-muted-foreground/40 transition-transform duration-300",
+                              isDropdownOpen ? "rotate-180" : ""
+                            )} 
+                          />
+                        </button>
+
+                        {/* Custom Dropdown Menu */}
+                        {isDropdownOpen && (
+                          <div className="absolute top-full left-0 w-full z-50 mt-2 p-2 rounded-2xl bg-surface-secondary/95 backdrop-blur-xl border border-white/10 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+                            <div className="flex flex-col gap-1">
+                              {services.map((service) => (
+                                <button
+                                  key={service.value}
+                                  type="button"
+                                  onClick={() => {
+                                    setSelectedService(service.value);
+                                    setIsDropdownOpen(false);
+                                  }}
+                                  className={cn(
+                                    "flex items-center justify-between px-6 py-4 rounded-xl text-lg transition-all text-left group/item",
+                                    selectedService === service.value
+                                      ? "bg-primary/10 text-primary"
+                                      : "hover:bg-white/5 text-muted-foreground hover:text-foreground"
+                                  )}
+                                >
+                                  <span className="font-light">{service.label}</span>
+                                  {selectedService === service.value && (
+                                    <Check className="w-5 h-5 text-primary" />
+                                  )}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        
                         <div className="absolute bottom-0 left-0 w-full h-[1px] bg-foreground/10 transition-colors group-hover:bg-foreground/20" />
-                        <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-primary transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-focus-within:w-full" />
+                        <div className={cn(
+                          "absolute bottom-0 left-0 h-[1px] bg-primary transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]",
+                          isDropdownOpen || selectedService ? "w-full" : "w-0"
+                        )} />
                       </div>
                    </div>
                    
@@ -154,9 +218,9 @@ export default function ContactPage() {
                    </div>
                    
                    <div className="pt-8 flex justify-end">
-                      <Button size="lg" className="group/btn relative overflow-hidden rounded-full h-24 px-16 text-xl bg-foreground text-background hover:bg-foreground transition-all duration-500">
-                          <span className="relative z-10 flex items-center gap-4 group-hover/btn:gap-6 transition-all duration-500">
-                            Send Inquiry <ArrowRight className="w-6 h-6 -rotate-45 group-hover/btn:rotate-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
+                      <Button size="lg" className="group/btn relative overflow-hidden rounded-full h-14 px-8 text-base bg-foreground text-background hover:bg-foreground transition-all duration-500">
+                          <span className="relative z-10 flex items-center gap-3 group-hover/btn:gap-4 transition-all duration-500">
+                            Send Inquiry <ArrowRight className="w-5 h-5 -rotate-45 group-hover/btn:rotate-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
                           </span>
                       </Button>
                    </div>

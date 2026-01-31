@@ -332,15 +332,7 @@ export default function AboutPage() {
             </div>
 
             <div className="space-y-6">
-              <Button
-                asChild
-                className="w-full rounded-full bg-gradient-to-r from-primary to-primary/70 text-background shadow-lg py-4"
-                size="lg"
-              >
-                <Link href="/resume.pdf" download target="_blank">
-                  <Download className="mr-2 h-4 w-4" /> Download PDF
-                </Link>
-              </Button>
+              
             </div>
           </aside>
 
@@ -352,15 +344,6 @@ export default function AboutPage() {
             <p className="text-lg text-muted-foreground mb-8">
               Frontend Engineer
             </p>
-            <Button
-              asChild
-              className="rounded-full w-full sm:w-auto shadow-md"
-              size="lg"
-            >
-              <Link href="/resume.pdf" download target="_blank">
-                <Download className="mr-2 h-4 w-4" /> Download PDF
-              </Link>
-            </Button>
           </div>
 
           {/* Main Content */}
@@ -559,21 +542,18 @@ export default function AboutPage() {
                   {education.map((edu, idx) => (
                     <div 
                       key={idx} 
-                      className="snap-start shrink-0 w-[85vw] md:w-[420px] aspect-[4/5] md:aspect-[3/4] group relative bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/5 hover:border-white/20 p-8 rounded-3xl transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1"
+                      className="snap-start shrink-0 w-[85vw] md:w-[420px] md:h-[340px] group relative bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/5 hover:border-white/20 p-8 rounded-3xl transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 select-none cursor-grab active:cursor-grabbing"
                     >
                        <div className="absolute inset-0 bg-primary/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" />
                        
                        <div className="relative z-10 h-full flex flex-col">
-                          <div className="flex justify-between items-start mb-8">
+                          <div className="flex justify-between items-start mb-6">
                               <span className="text-6xl font-bold text-white/5 group-hover:text-primary/10 transition-colors duration-500">
                                   0{idx + 1}
                               </span>
-                              <div className="p-3 rounded-full bg-white/5 border border-white/5 group-hover:bg-primary/10 group-hover:border-primary/20 transition-all duration-300">
-                                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                              </div>
                           </div>
 
-                          <div className="space-y-2 mb-6">
+                          <div className="space-y-2 mb-4">
                               <span className="font-mono text-xs text-primary/80 tracking-widest uppercase">
                                   {edu.period}
                               </span>
