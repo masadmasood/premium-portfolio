@@ -210,49 +210,45 @@ export default function HomePage() {
                   key={index}
                   className="group flex flex-col items-center text-center reveal-on-scroll"
                 >
-                  {/* Image Area - Full Width Style */}
-                  <div className="relative w-40 h-40 mb-8 rounded-full overflow-hidden bg-secondary/30 border border-border/40 shadow-sm group-hover:shadow-2xl group-hover:shadow-primary/5 transition-all duration-700 ease-out cursor-pointer flex items-center justify-center">
-                    <Code className="h-16 w-16 text-muted-foreground group-hover:text-primary transition-colors duration-700" />
-                  </div>
-
-                  {/* Content Area - Qapital Card Style */}
-                  <div className="max-w-2xl mx-auto flex flex-col items-center gap-6">
-                    {/* Title */}
-                    <h3 className="font-sans font-bold text-3xl md:text-4xl tracking-tight text-foreground">
-                      {project.title}
-                    </h3>
-
-                    {/* Role */}
-                    <p className="font-medium text-lg text-muted-foreground/80">
-                      Director of Product Design
-                    </p>
+                  {/* Content Area - Minimal Qapital Style */}
+                  <div className="max-w-3xl mx-auto flex flex-col items-center gap-8">
+                    {/* Title & Category */}
+                    <div className="space-y-4">
+                        <h3 className="font-sans font-bold text-5xl md:text-6xl tracking-tighter text-foreground">
+                          {project.title}
+                        </h3>
+                        <p className="font-medium text-lg md:text-xl text-muted-foreground/60 uppercase tracking-widest">
+                          {project.category}
+                        </p>
+                    </div>
 
                     {/* Description */}
-                    <p className="text-xl text-muted-foreground leading-relaxed">
+                    <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl font-light">
                       {project.description}
                     </p>
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap justify-center gap-3 my-2">
-                      {project.tech.slice(0, 5).map((t) => (
+                    {/* Tags - Strategy/Concept focused */}
+                    <div className="flex flex-wrap justify-center gap-3 my-4">
+                      {(project.tags || project.tech).map((t) => (
                         <span
                           key={t}
-                          className="px-5 py-2 text-xs font-bold tracking-wider bg-secondary text-secondary-foreground rounded-full uppercase"
+                          className="px-5 py-2.5 rounded-full bg-secondary/30 border border-border/50 text-xs font-semibold text-muted-foreground uppercase tracking-wider transition-all duration-300 hover:bg-secondary/50 hover:text-foreground cursor-default"
                         >
                           {t}
                         </span>
                       ))}
                     </div>
 
-                    {/* Button */}
-                    <Button
-                      asChild
-                      size="lg"
-                      variant="outline"
-                      className="rounded-full h-14 px-10 border-border hover:bg-foreground hover:text-background transition-colors text-base mt-6"
-                    >
-                      <Link href={project.href}>View Case Story</Link>
-                    </Button>
+                    {/* Button - Reveal on hover */}
+                    <div className="pt-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                        <Button
+                          asChild
+                          variant="outline"
+                          className="rounded-full h-14 px-10 border-border hover:bg-foreground hover:text-background transition-colors text-base"
+                        >
+                          <Link href={project.href}>View Case Story</Link>
+                        </Button>
+                    </div>
                   </div>
                 </div>
               ))}

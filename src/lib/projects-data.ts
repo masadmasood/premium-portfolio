@@ -9,6 +9,7 @@ export const projectsData = [
        "User profiling and personalized guidance"
     ],
     tech: ["Next.js", "Tailwind CSS", "React Query", "FastAPI", "PHI-4 Model"],
+    tags: ["Product Strategy", "AI Integration", "Full Stack Architecture", "User Experience"],
     href: "/case-studies/vccs-ai-career",
     year: "2024"
   },
@@ -22,6 +23,7 @@ export const projectsData = [
        "Clean and modern user experience"
     ],
     tech: ["React.js", "Tailwind CSS"],
+    tags: ["UI Systems", "Frontend Architecture", "Product Design", "Interactive UI"],
     href: "/projects",
     year: "2024"
   },
@@ -35,6 +37,7 @@ export const projectsData = [
        "Optimized performance for large-scale data handling"
     ],
     tech: ["React.js", "React Query", "ShadCN UI", "Node.js", "MySQL"],
+    tags: ["Complex Workflows", "Enterprise Systems", "Scalability", "Data Visualization"],
     href: "/case-studies/timesheet-management",
     year: "2024"
   },
@@ -47,6 +50,7 @@ export const projectsData = [
        "Core ERP modules and business workflows"
     ],
     tech: ["React.js", "JavaScript", "React Query", "PHP (Laravel)"],
+    tags: ["Business Logic", "Figma to Code", "Process Optimization", "Legacy Modernization"],
     href: "/case-studies/enterprise-management",
     year: "2023"
   }
